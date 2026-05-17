@@ -1,5 +1,6 @@
 import React from 'react';
 import { CURRENCIES } from '../constants';
+import { formatCurrencySymbol } from '../utils/formatCurrency';
 import '../styles/StatsPanel.css';
 
 function StatsPanel({ stats, monthName, currency, isPro }) {
@@ -22,7 +23,7 @@ function StatsPanel({ stats, monthName, currency, isPro }) {
             <p className="stat-label">Total de Gastos</p>
             <p className="stat-value">
               <span className="currency-symbol">{currencyInfo.symbol}</span>
-              {stats.total?.toFixed(2) || '0.00'}
+              {formatCurrencySymbol(stats.total || 0, currency)}
             </p>
             <p className="stat-subtitle">{monthName}</p>
           </div>
@@ -45,7 +46,7 @@ function StatsPanel({ stats, monthName, currency, isPro }) {
             <p className="stat-label">Promedio por Gasto</p>
             <p className="stat-value">
               <span className="currency-symbol">{currencyInfo.symbol}</span>
-              {stats.count > 0 ? (stats.total / stats.count).toFixed(2) : '0.00'}
+              {stats.count > 0 ? formatCurrencySymbol(stats.total / stats.count, currency) : '0'}
             </p>
             <p className="stat-subtitle">por transacción</p>
           </div>
@@ -61,7 +62,7 @@ function StatsPanel({ stats, monthName, currency, isPro }) {
             </p>
             <p className="stat-subtitle">
               <span className="currency-symbol">{currencyInfo.symbol}</span>
-              {stats.topCategory?.amount?.toFixed(2) || '0.00'}
+              {formatCurrencySymbol(stats.topCategory?.amount || 0, currency)}
             </p>
           </div>
         </div>

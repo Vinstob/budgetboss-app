@@ -1,5 +1,6 @@
 import React from 'react';
 import { CURRENCIES } from '../constants';
+import { formatCurrencySymbol } from '../utils/formatCurrency';
 import '../styles/ExpenseList.css';
 
 function ExpenseList({ expenses, categories, currency, onEdit, onDelete }) {
@@ -60,7 +61,7 @@ function ExpenseList({ expenses, categories, currency, onEdit, onDelete }) {
               <div className="expense-amount">
                 <span className="currency-symbol">{currencyInfo.symbol}</span>
                 <span className="amount-value">
-                  {parseFloat(expense.amount).toFixed(2)}
+                  {formatCurrencySymbol(parseFloat(expense.amount), currency)}
                 </span>
               </div>
 
